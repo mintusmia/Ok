@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Checker</title>
+</head>
+<body>
+    <h1>IP Checker</h1>
+    <div id="result"></div>
+
+    <script>
+        // Array to store multiple IPs
+        var storedIPs = ["127.0.0.1", "192.168.1.1", "10.0.0.1", "103.62.140.194"];
+
+        // Function to check if the current IP matches any stored IP
+        function checkIP() {
+            fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    var currentIP = data.ip;
+                    var matchFound = false;
+                    for (var i = 0; i < storedIPs.length; i++) {
+                        if (currentIP === storedIPs[i]) {
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                    if (matchFound) {
+                        document.getElementById("result").innerHTML = "<p>Your IP matches one of the stored IPs.</p>";
+                    } else {
+                        document.getElementById("result").innerHTML = "<p>Your IP does not match any of the stored IPs.</p>";
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function when the page loads
+        window.onload = checkIP;
+    </script>
+</body>
+</html>
