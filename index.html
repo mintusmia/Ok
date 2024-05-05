@@ -19,17 +19,9 @@
                 .then(response => response.json())
                 .then(data => {
                     var currentIP = data.ip;
-                    var matchFound = false;
-                    for (var i = 0; i < storedIPs.length; i++) {
-                        if (currentIP === storedIPs[i]) {
-                            matchFound = true;
-                            break;
-                        }
-                    }
+                    var matchFound = storedIPs.includes(currentIP);
                     if (matchFound) {
-                        document.getElementById("result").innerHTML = "<p>Your IP matches one of the stored IPs.</p>";
-                    } else {
-                        document.getElementById("result").innerHTML = "<p>Your IP does not match any of the stored IPs.</p>";
+                        document.getElementById("result").innerText = "true";
                     }
                 })
                 .catch(error => console.error('Error:', error));
