@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Checker</title>
+    
 </head>
 <body>
     <h1>IP Checker</h1>
@@ -11,7 +11,7 @@
 
     <script>
         // Array to store multiple IPs
-        var storedIPs = ["127.0.0.1", "192.168.1.1", "10.0.0.1", "103.62.140.194"];
+        var storedIPs = ["103.62.140.194, 103.1.60.7"];
 
         // Function to check if the current IP matches any stored IP
         function checkIP() {
@@ -21,7 +21,9 @@
                     var currentIP = data.ip;
                     var matchFound = storedIPs.includes(currentIP);
                     if (matchFound) {
-                        document.getElementById("result").innerText = "true";
+                        document.getElementById("result").innerText = "404";
+                    } else {
+                        document.getElementById("result").innerText = "406";
                     }
                 })
                 .catch(error => console.error('Error:', error));
